@@ -1,7 +1,7 @@
-# quadratic-content-reward
+# Community-Powered Content Rewards
+
 A decentralized application (DApp) that enables private and secure communication between Protocols or DAOs and their holders or followers while rewarding content creators for producing high-quality content through quadratic voting.
 
-Community-Powered Content Rewards
 # Overview
 The Dapp empowers communities protocols, and DAOs to engage in private and secure communication while also fostering content creation. The core idea is to leverage sponsorships through ads to support community members in creating valuable content, such as newsletters, blogs, and videos, and then utilize quadratic voting to determine the most valuable contributions.
 
