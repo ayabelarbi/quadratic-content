@@ -1,4 +1,4 @@
-# Grantify - Community-Powered Content Rewards
+# Grantify 
 
 Grantify is a DApp that enables private and secure communication between Protocols or DAOs and their holders or followers while rewarding content creators for producing high-quality content through quadratic voting.
 
