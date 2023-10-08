@@ -28,3 +28,11 @@ Privacy-Preserving Communication: The platform allows private and secure communi
 DataProtector allow the data protection of the creator. It enable the member of the community to receive exclusive content such as newsletter or blog, without reviling the personnal information of the creator, or the member. 
 
 Web3Mail 
+
+
+# Getting started 
+
+` git clone 'https://github.com/ayabelarbi/quadratic-content-reward`
+` cd grantify`
+` npm install`
+` npm run dev`
