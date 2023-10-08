@@ -20,6 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  "include": ["src", "wagmi.ts", "useDebounce.ts", "polyfills.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
