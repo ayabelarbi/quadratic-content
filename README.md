@@ -1,6 +1,6 @@
 # Grantify 
 
-Grantify is a DApp that enables private and secure communication between Protocols or DAOs and their holders or followers while rewarding content creators for producing high-quality content through quadratic voting.
+Grantify is a dApp that enables private and secure communication between Protocols or DAOs and their holders or followers while rewarding content creators for producing high-quality content through quadratic voting.
 
 # Overview
 The core idea is to incentivizes community members to create valuable content, such as newsletters, blogs, and videos, by offering rewards generated from a matching pool funded by ads contracts between sponsors and DAOs or protocols. It use quadratic voting, which not only helps assess and identify the most valuable contributions made by content creator but also empowers the community itself. Quadratic voting allows community members to have a more substantial say in determining the most valuable content. By giving more weight to the preferences of highly engaged community members, it fosters a sense of fairness and inclusivity while ensuring that the most deserving contributors are duly recognized and rewarded. 
