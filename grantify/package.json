@@ -16,12 +16,14 @@
     "@iexec/web3mail": "^0.5.1",
     "@mui/icons-material": "^5.14.12",
     "@mui/material": "^5.14.12",
-    "ethers": "^6.7.1",
+    "@web3modal/ethereum": "^2.7.1",
+    "@web3modal/react": "^2.7.1",
+    "@web3modal/wagmi": "^3.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "viem": "^1.15.5",
+    "viem": "^1.16.0",
     "wagmi": "^1.4.3",
-    "web3": "^4.1.2"
+    "web3modal": "^1.9.12"
   },
   "devDependencies": {
     "@types/node": "^20.8.3",

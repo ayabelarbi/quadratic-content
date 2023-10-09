@@ -4,26 +4,43 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
+import MenuIcon from "@mui/icons-material/Menu"; 
+import { useWeb3Modal } from '@web3modal/react';
+import { useEffect } from 'react';
+import { useAccount, useConnect, useDisconnect } from 'wagmi';
+import LogoutIcon from '@mui/icons-material/Logout';
 
-// import { IExecDataProtector, getWeb3Provider } from "@iexec/dataprotector";
 
-// const { PRIVATE_KEY } = import.meta.env;
-// get web3 provider from a private key
-// const web3Provider = getWeb3Provider(PRIVATE_KEY);
-// console.log("web3Provider", web3Provider);
+import "../main.css"; 
 
-// // instantiate
-// const dataProtector = new IExecDataProtector(web3Provider);
-// console.log("dataProtector", dataProtector);
 
-//TODO:  understand why this code doesn't work ? Is it because of web3Provider ?? s
 export default function ButtonAppBar() {
+
+  const { address, isConnected } = useAccount();
+
+  const { open } = useWeb3Modal();
+  const { error } = useConnect();
+  const { isConnecting, isDisconnected } = useAccount();
+
+  const { disconnect } = useDisconnect();
+
+  useEffect(() => {
+    if (isDisconnected) {
+      open();
+    }
+  }, [isDisconnected, open]);
+
+    //wallet address shortening
+    const shortAddress = (address: s22tring) => {
+      return address.slice(0, 6) + '...' + address.slice(-4);
+    };
+
+  
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar
+    <Box sx={{ flexGrow: 1 }} >
+      <AppBar 
         position="static"
-        style={{ color: "black", background: "#7e57c2" }}
+        style={{ color: "white", background: "#0f172a" }}
       >
         <Toolbar>
           <IconButton
@@ -31,6 +48,7 @@ export default function ButtonAppBar() {
             edge="start"
             aria-label="menu"
             sx={{ mr: 2 }}
+            style={{ color: "white"}}
           >
             <MenuIcon />
           </IconButton>
@@ -43,10 +61,31 @@ export default function ButtonAppBar() {
           >
             Grantify
           </Typography>
-          <Button style={{ color: "black", background: "grey" }}>
-            {" "}
-            Login{" "}
+
+          {error && <Typography>{error.message}</Typography>}
+
+          {isConnecting &&  <Button style={{background:"#ddd7ff", color:"black"}}>
+            Connecting...
+          </Button>}
+
+          {isDisconnected && (
+          <Button style={{background:"#ddd7ff", color:"black"}}>
+            Connect your Wallet
           </Button>
+          )}
+
+          {isConnected && (
+          <>
+          <Button style={{background:"#ddd7ff", color:"black"}}>
+              {shortAddress(address)}
+          </Button>
+
+          <IconButton onClick={disconnect} >
+            <LogoutIcon style={{ color:"white" }} />
+          </IconButton>
+          </>  
+          )}
+    
         </Toolbar>
       </AppBar>
     </Box>
