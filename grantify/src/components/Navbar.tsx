@@ -31,7 +31,7 @@ export default function ButtonAppBar() {
   }, [isDisconnected, open]);
 
     //wallet address shortening
-    const shortAddress = (address: s22tring) => {
+    const shortAddress = (address: string) => {
       return address.slice(0, 6) + '...' + address.slice(-4);
     };
 
