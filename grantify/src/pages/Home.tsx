@@ -1,9 +1,25 @@
 import { Box } from "@mui/system";
 import { Card, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 import "../main.css";
 
 function Home() {
+
+  let history = useNavigate();
+
+  const handleRedirectCreate = () => {
+    history('/create');
+  };
+  
+
+  const handleRedirectVote = () => {
+    history('/vote');
+  }
+
+
+
+
   return (
     <Box
       sx={{
@@ -17,15 +33,16 @@ function Home() {
     >
       <h1
         style={{
-          color: "#ddd7ff",
+          color: "#fcd15b",
           fontSize: "5rem",
-          fontFamily: "Montserrat",
           fontWeight: "bold",
-          textShadow: "2px 2px 2px black",
+
         }}
       >
-        earn.learn.create{" "}
+        learn.earn.protect{" "}
       </h1>
+      <h2> 
+      </h2>
       <Box
         sx={{
           display: "flex",
@@ -34,7 +51,6 @@ function Home() {
           justifyContent: "center",
           width: "50%",
           height: "50vh",
-          border: "1px solid black",
           gap: "1rem",
         }}
       >
@@ -46,6 +62,7 @@ function Home() {
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
+            background:"#0f172a",
           }}
         >
           <Button
@@ -54,12 +71,9 @@ function Home() {
                         color:"black",
                         }}
 
-            onClick={() => {
-              window.location.href = "/create";
-            }}
+            onClick={handleRedirectCreate}
             >
-             Create a content 
-             
+            Create content 
             </Button>
         </Card>
         <Card
@@ -70,14 +84,14 @@ function Home() {
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
+            background:"#0f172a",
+
           }}
         >
           <Button 
             style={{background:"#ddd7ff", color:"black"}}
 
-            onClick={() => {
-              window.location.href = "/vote";
-            }}
+            onClick={handleRedirectVote}
 
             > 
             Vote for the best content

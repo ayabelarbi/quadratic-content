@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
+import Create from './pages/Create.tsx'
+import Vote from './pages/Vote.tsx'
 import './index.css'
 import { WagmiConfig, createConfig, configureChains  } from 'wagmi'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
@@ -12,6 +14,10 @@ import {
   w3mConnectors,
 } from '@web3modal/ethereum';
 import { Web3Modal } from '@web3modal/react';
+
+//browserRoute installation 
+
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 
 // material ui theme
@@ -47,10 +53,19 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}> 
     <WagmiConfig config={config}>
-      <App />
+    <BrowserRouter>
+    <Routes> 
+        <Route path="/" element={<App/>}/> 
+  
+        <Route path="/create" element={<Create/>}/> 
+
+        <Route path="/vote" element={ <Vote/>} />
+    </Routes> 
+    </BrowserRouter>
+
     </WagmiConfig>
     <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
-
     </ThemeProvider>
+
   </React.StrictMode>,
 )
