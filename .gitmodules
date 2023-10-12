@@ -1,0 +1,3 @@
+[submodule "grantify-smart-contract/grantify_contract/lib/forge-std"]
+	path = grantify-smart-contract/grantify_contract/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
