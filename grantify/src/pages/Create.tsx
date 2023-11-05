@@ -18,8 +18,6 @@ import {
   protectDataFunc
 } from '../utils/iExec_api';
 
-
-
 export default function Create() {
   
 //  //loading effect & error
@@ -147,13 +145,7 @@ const protectedDataSubmit = async () => {
                 Create
               </Button>
     )}
-
-           
-
     </Box>
-
-
-
 
     </>    
 

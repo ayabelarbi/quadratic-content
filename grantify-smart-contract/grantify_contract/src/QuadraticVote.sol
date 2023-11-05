@@ -1,19 +1,16 @@
 //SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.0;
 
-import "openzeppelin-contracts/contracts/math/SafeMath.sol";
-import "openzeppelin-contracts/contracts/ownership/Ownable.sol";
-
-import "openzeppelin-solidity/contracts/math/SafeMath.sol";
-import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
-import "openzeppelin-solidity/contracts/access/roles/MinterRole.sol";
+import "../lib/forge-std/openzeppelin-contracts/contracts/access/Ownable.sol";
+import "../lib/forge-std/openzeppelin-contracts/contracts/access/AccessControl.sol"; 
+import "../lib/forge-std/openzeppelin-contracts/contracts/utils/math/Math.sol";
 
 /**
  * @title QVVoting
  * @dev the manager for proposals / votes
  */
-contract QVVoting is Ownable, MinterRole {
-    using SafeMath for uint256;
+contract QuadraticVote is Ownable {
+    using Math for uint256;
 
     uint256 private _totalSupply;
     string public symbol;
