@@ -7,6 +7,8 @@ out/
 /broadcast/*/31337/
 /broadcast/**/dry-run/
 
+# ignore libraries openZeppelin in lib/openzeppelin-contracts
+/lib/
 
 # Docs
 docs/

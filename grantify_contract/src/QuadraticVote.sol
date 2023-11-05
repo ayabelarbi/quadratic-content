@@ -1,15 +1,11 @@
 //SPDX-License-Identifier: Unlicense
-pragma solidity ^0.8.0;
+pragma solidity >=0.8.0;
 
-import "../lib/forge-std/openzeppelin-contracts/contracts/access/Ownable.sol";
-import "../lib/forge-std/openzeppelin-contracts/contracts/access/AccessControl.sol"; 
-import "../lib/forge-std/openzeppelin-contracts/contracts/utils/math/Math.sol";
+import "../lib/openzeppelin-contracts/contracts/access/Ownable.sol";
+import "../lib/openzeppelin-contracts/contracts/access/AccessControl.sol"; 
+import "../lib/openzeppelin-contracts/contracts/utils/math/Math.sol";
 
-/**
- * @title QVVoting
- * @dev the manager for proposals / votes
- */
-contract QuadraticVote is Ownable {
+contract QuadraticVote is Ownable, AccessControl {
     using Math for uint256;
 
     uint256 private _totalSupply;
@@ -23,7 +19,7 @@ contract QuadraticVote is Ownable {
         address creator,
         uint256 ProposalID,
         string description,
-        uint votingTimeInHours
+        uint256 voteExpirationTime
     );
 
     enum ProposalStatus {IN_PROGRESS, TALLY, ENDED}
@@ -48,7 +44,7 @@ contract QuadraticVote is Ownable {
     mapping(uint256 => Proposal) public Proposals;
     uint public ProposalCount;
 
-    constructor() public {
+    constructor(address initialOwner) Ownable(initialOwner) {
         symbol = "QVV";
         name = "QV Voting";
     }
@@ -68,7 +64,7 @@ contract QuadraticVote is Ownable {
         Proposal storage curProposal = Proposals[ProposalCount];
         curProposal.creator = msg.sender;
         curProposal.status = ProposalStatus.IN_PROGRESS;
-        curProposal.expirationTime = now + 60 * _voteExpirationTime * 1 seconds;
+        curProposal.expirationTime = block.timestamp + 60 * _voteExpirationTime * 1 seconds;
         curProposal.description = _description;
 
         emit ProposalCreated(
@@ -94,7 +90,7 @@ contract QuadraticVote is Ownable {
             "Vote is not in progress"
         );
         require(
-            now >= getProposalExpirationTime(_ProposalID),
+            block.timestamp >= getProposalExpirationTime(_ProposalID),
             "voting period has not expired"
         );
         Proposals[_ProposalID].status = ProposalStatus.TALLY;
@@ -114,7 +110,7 @@ contract QuadraticVote is Ownable {
             "Proposal should be in tally"
         );
         require(
-            now >= getProposalExpirationTime(_ProposalID),
+            block.timestamp >= getProposalExpirationTime(_ProposalID),
             "voting period has not expired"
         );
         Proposals[_ProposalID].status = ProposalStatus.ENDED;
@@ -189,11 +185,11 @@ contract QuadraticVote is Ownable {
             "user already voted on this proposal"
         );
         require(
-            getProposalExpirationTime(_ProposalID) > now,
+            getProposalExpirationTime(_ProposalID) > block.timestamp,
             "for this proposal, the voting time expired"
         );
 
-        _balances[msg.sender] = _balances[msg.sender].sub(numTokens);
+        _balances[msg.sender] = _balances[msg.sender] - numTokens;
 
         uint256 weight = sqrt(numTokens); // QV Vote
 
@@ -254,8 +250,8 @@ contract QuadraticVote is Ownable {
     */
     function mint(address account, uint256 amount) public onlyOwner {
         require(account != address(0), " mint to the zero address");
-        _totalSupply = _totalSupply.add(amount);
-        _balances[account] = _balances[account].add(amount);
+        _totalSupply = _totalSupply + amount;
+        _balances[account] = _balances[account] + amount;
     }
 
     /**
