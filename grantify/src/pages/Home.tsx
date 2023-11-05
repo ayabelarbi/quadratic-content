@@ -6,7 +6,7 @@ import "../main.css";
 
 function Home() {
 
-  let history = useNavigate();
+  const history = useNavigate();
 
   const handleRedirectCreate = () => {
     history('/create');
@@ -16,8 +16,6 @@ function Home() {
   const handleRedirectVote = () => {
     history('/vote');
   }
-
-
 
 
   return (
@@ -92,7 +90,6 @@ function Home() {
             style={{background:"#ddd7ff", color:"black"}}
 
             onClick={handleRedirectVote}
-
             > 
             Vote for the best content
         </Button>
